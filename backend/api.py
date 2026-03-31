@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
-from helpers.n8n_handler import test_prompt
-from helpers.db_handler import *
+
+from backend.helpers.n8n_handler import test_prompt
+
+from backend.helpers.db_handler import *
 
 app = Flask(__name__)
 CORS(app)
