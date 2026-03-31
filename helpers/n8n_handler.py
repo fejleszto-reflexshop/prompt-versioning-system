@@ -1,12 +1,16 @@
+from pathlib import Path
+
 import requests as re
+from dotenv import load_dotenv
 
-def is_n8n_flow_online():
-    call = re.get("https://reflexshop.app.n8n.cloud/webhook-test/api/up")
+import os
 
-    response = call.json()
-
-    return dict(response).get("status") == 'up'
+load_dotenv(dotenv_path=Path(__file__).parent / ".env")
 
 
-def test_prompt():
-    pass
+def test_prompt(prompt: str):
+    payload = {"prompt": prompt}
+
+    call = re.post(os.getenv('TEST_PROMPT') or '', json=payload)
+
+    return call.json()
