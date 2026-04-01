@@ -2,17 +2,19 @@
 
 
 def create_account(username: str, password: str) -> bool:
-    pass
+    raise NotImplementedError
+
 
 def get_account_data(user_id: str) -> bool:
-    pass
+    raise NotImplementedError
 
 
 def login_account(username: str, password: str) -> str:
-    pass
+    raise NotImplementedError
+
 
 def delete_account(user_id: str) -> bool:
-    pass
+    raise NotImplementedError
 
 
 def load_version_history(user_id: str) -> list[str]:
@@ -27,7 +29,8 @@ def save_version(user_id: str, version: dict) -> bool:
 
 
 def get_latest_version(user_id: str) -> bool:
-    pass
+    raise NotImplementedError
+
 
 def get_best_version(user_id: str) -> bool:
-    pass
+    raise NotImplementedError

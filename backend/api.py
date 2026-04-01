@@ -11,6 +11,7 @@ CORS(app)
 @app.route('/test-prompt', methods=['GET', 'POST'])
 def api_test_prompt() -> Response:
     evaluate: dict = test_prompt('prompt for comparing two strings')[0]
+
     res: dict = evaluate.get('text', {})
     score: float | int = sum([res['scores'][key] for key in res['scores']])
 
@@ -18,13 +19,13 @@ def api_test_prompt() -> Response:
 
 
 @app.route('/new-acc', methods=['POST'])
-def api_new_acc() -> Response:
+def api_new_acc() -> tuple[Response, int]:
     username: str = str(request.args.get('username'))
     password: str = str(request.args.get('password'))
 
     val: bool = create_account(username, password)
 
-    return jsonify({"is_created": val})
+    return jsonify({"is_created": val}), 200 if val else 404
 
 
 @app.route('/login', methods=['GET'])
@@ -38,12 +39,12 @@ def api_login() -> Response:
 
 
 @app.route('/delete-acc', methods=['DELETE'])
-def api_delete_acc() -> Response:
+def api_delete_acc() -> tuple[Response, int]:
     username: str = str(request.args.get('username'))
 
     val: bool = delete_account(username)
 
-    return jsonify({"is_deleted": val})
+    return jsonify({"is_deleted": val}), 200 if val else 404
 
 
 @app.route('/versions', methods=['GET'])
