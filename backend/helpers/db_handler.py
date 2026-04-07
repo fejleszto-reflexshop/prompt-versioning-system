@@ -18,14 +18,11 @@ def delete_account(user_id: str) -> bool:
 
 
 def load_version_history(user_id: str) -> list[str]:
-    return [""]
+    raise NotImplementedError
 
 
 def save_version(user_id: str, version: dict) -> bool:
-    try:
-        return True
-    except Exception as e:
-        return False
+    raise NotImplementedError
 
 
 def get_latest_version(user_id: str) -> bool:

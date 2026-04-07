@@ -20,8 +20,8 @@ def api_test_prompt() -> Response:
 
 @app.route('/new-acc', methods=['POST'])
 def api_new_acc() -> tuple[Response, int]:
-    username: str = str(request.args.get('username'))
-    password: str = str(request.args.get('password'))
+    username: str = request.get_json().get('u') or ""
+    password: str = request.get_json().get('p') or ""
 
     val: bool = create_account(username, password)
 
